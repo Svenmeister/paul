@@ -138,10 +138,12 @@ var checkCommand = function(msg, isMention) {
 	if(isMention) {
 		var command = msg.content.split(" ")[1];
 		msg.content = msg.content.split(" ").splice(2, msg.content.split(' ').length).join(' ');
+		if(!commands[command]) return;
 		if(command) commands[command].main(bot, msg);
 	}else {
 		var command = msg.content.split(bot.PREFIX)[1].split(" ")[0];
 		msg.content = msg.content.replace(bot.PREFIX + command + " ", "");
+		if(!commands[command]) return;
 		if(command) commands[command].main(bot, msg);
 	}
 }
